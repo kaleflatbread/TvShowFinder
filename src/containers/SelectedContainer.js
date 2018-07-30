@@ -3,7 +3,6 @@ import ShowCard from "../components/ShowCard";
 
 //this.props.selectedCard=entire show instance
 export default class SelectedContainer extends Component {
-
   render() {
     return (
       <div>
