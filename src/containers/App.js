@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import SearchContainer from './SearchContainer';
-import showsData from '../showsData.js';
-import SelectedContainer from './SelectedContainer.js';
-import isEqual from '../searchAlg.js';
+import showsData from '../showsData';
+import SelectedContainer from './SelectedContainer';
+import isEqual from '../searchAlg';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class App extends Component {
       results: [],
       selectedCard: null,
       showPage: true,
+      similarShows: [],
     };
   }
 
@@ -32,20 +35,20 @@ class App extends Component {
   };
 
   handleCardClick = (selectedShow) => {
-    // const selectedShow = this.state.shows.find(show => {
-    //   return show.id === parseInt(event.target.id)
-    // })
+    let similarShows = showsData.filter((show) => isEqual(selectedShow, show));
     console.log(selectedShow);
     this.setState({
       showPage: !this.state.showPage,
       selectedCard: selectedShow,
+      similarShows: similarShows,
     });
-    showsData.forEach((show) => isEqual(selectedShow.genres, show));
   };
 
   render() {
+    console.log('similar Show State', this.state.similarShows);
     return (
       <div>
+        <NavBar />
         {this.state.showPage ? (
           <SearchContainer
             onSearchTermChange={this.handleShowSearch}
@@ -53,8 +56,13 @@ class App extends Component {
             onCardClick={this.handleCardClick}
           />
         ) : (
-          <SelectedContainer selectedCard={this.state.selectedCard} />
+          <SelectedContainer
+            similarShows={this.state.similarShows}
+            selectedCard={this.state.selectedCard}
+          />
         )}
+
+        <Footer />
       </div>
     );
   }

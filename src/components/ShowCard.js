@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Avatar } from 'antd';
+import reformatSummary from '../reformatSummary';
 const { Meta } = Card;
 
 const ShowCard = (props) => {
@@ -23,7 +24,7 @@ const ShowCard = (props) => {
       >
         <Meta
           title={props.show.name}
-          description={props.show.summary.slice(3, 90)}
+          description={reformatSummary(props.show.summary)}
         />
       </Card>
     </div>

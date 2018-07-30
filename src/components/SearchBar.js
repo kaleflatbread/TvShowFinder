@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Input } from 'antd';
+import { Row, Col } from 'antd';
+
+const Search = Input.Search;
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -17,10 +21,19 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div className="search-bar">
-        <input
-          value={this.state.term}
-          onChange={(event) => this.onInputChange(event.target.value)}
-        />
+        <br />
+        <br />
+        <br />
+        <Row>
+          <Col span={4}> </Col>
+          <Col span={16}>
+            <Search
+              value={this.state.term}
+              onChange={(event) => this.onInputChange(event.target.value)}
+            />
+          </Col>
+          <Col span={4}> </Col>
+        </Row>
       </div>
     );
   }
