@@ -47,16 +47,16 @@ class App extends Component {
 
   handleModal = () => {
     console.log('modal');
-    this.setState = {
-      displayModal: true,
-    };
+    this.setState({
+      displayModal: !this.state.displayModal
+    })
   };
 
   render() {
-    console.log('similar Show State', this.state.similarShows);
+    console.log(this.state.displayModal);
     return (
       <div>
-        <CardModal displayModal={this.state.displayModal} />
+        <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} />
         <NavBar />
         {this.state.showPage ? (
           <SearchContainer

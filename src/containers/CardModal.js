@@ -18,6 +18,15 @@ export default class CardModal extends Component {
     });
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.displayModal) {
+      props.handleModal()
+      return { visible: true }
+    } else {
+      return null
+    }
+  }
+
   render() {
     return (
       <div>
