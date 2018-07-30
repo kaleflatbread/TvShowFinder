@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import SearchContainer from "./SearchContainer";
-import showsData from "../showsData.js";
-import SelectedContainer from "./SelectedContainer.js"
+import React, { Component } from 'react';
+import SearchContainer from './SearchContainer';
+import showsData from '../showsData.js';
+import SelectedContainer from './SelectedContainer.js';
+import isEqual from '../searchAlg.js';
 
 class App extends Component {
   constructor(props) {
