@@ -5,7 +5,11 @@ const SearchResults = (props) => {
   return props.shows.map((show) => {
     return (
       <div key={show.id}>
-        <ShowCard show={show} onCardClick={props.onCardClick} />
+        <ShowCard
+          handleModal={props.handleModal}
+          show={show}
+          onCardClick={props.onCardClick}
+        />
       </div>
     );
   });

@@ -8,6 +8,7 @@ export default class SearchContainer extends Component {
       <div>
         <SearchBar onSearchTermChange={this.props.onSearchTermChange} />
         <SearchResults
+          handleModal={this.props.handleModal}
           shows={this.props.shows}
           onCardClick={this.props.onCardClick}
         />

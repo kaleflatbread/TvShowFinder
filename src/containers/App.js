@@ -5,7 +5,7 @@ import SelectedContainer from './SelectedContainer';
 import isEqual from '../searchAlg';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-
+import CardModal from './CardModal.js';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,7 @@ class App extends Component {
       selectedCard: null,
       showPage: true,
       similarShows: [],
+      displayModal: false,
     };
   }
 
@@ -44,19 +45,29 @@ class App extends Component {
     });
   };
 
+  handleModal = () => {
+    console.log('modal');
+    this.setState = {
+      displayModal: true,
+    };
+  };
+
   render() {
     console.log('similar Show State', this.state.similarShows);
     return (
       <div>
+        <CardModal displayModal={this.state.displayModal} />
         <NavBar />
         {this.state.showPage ? (
           <SearchContainer
+            handleModal={this.handleModal}
             onSearchTermChange={this.handleShowSearch}
             shows={this.state.results}
             onCardClick={this.handleCardClick}
           />
         ) : (
           <SelectedContainer
+            handleModal={this.handleModal}
             similarShows={this.state.similarShows}
             selectedCard={this.state.selectedCard}
           />

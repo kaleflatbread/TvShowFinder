@@ -25,14 +25,14 @@ export default class SearchBar extends Component {
         <br />
         <br />
         <Row>
-          <Col span={4}> </Col>
-          <Col span={16}>
+          <Col span={8}> </Col>
+          <Col span={8}>
             <Search
               value={this.state.term}
               onChange={(event) => this.onInputChange(event.target.value)}
             />
           </Col>
-          <Col span={4}> </Col>
+          <Col span={8}> </Col>
         </Row>
       </div>
     );

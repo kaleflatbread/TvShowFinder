@@ -21,7 +21,7 @@ const SuggestedShows = ({ similarShows, onClick }) => {
           actions={[
             <Icon type="setting" />,
             <Icon type="edit" />,
-            <Icon type="ellipsis" />,
+            <Icon onClick={() => console.log('hey')} type="ellipsis" />,
           ]}
         >
           <Meta
