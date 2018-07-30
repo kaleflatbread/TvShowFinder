@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import ShowCard from "../components/ShowCard";
 
-
+//this.props.selectedCard=entire show instance
 export default class SelectedContainer extends Component {
 
   render() {
-    console.log("IM IN SELECTED CONTAINER")
     return (
       <div>
-        {this.props.selectedCard.name}
+        <ShowCard show={this.props.selectedCard}/>
       </div>
     );
   }

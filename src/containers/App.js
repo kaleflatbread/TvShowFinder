@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchContainer from "./SearchContainer";
 import showsData from "../showsData.js";
-import SelectedContainer from "./SelectedContainer"
+import SelectedContainer from "./SelectedContainer.js"
 
 class App extends Component {
   constructor(props) {
