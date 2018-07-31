@@ -6,7 +6,7 @@ export default class SearchContainer extends Component {
   render() {
     return (
       <div>
-        <SearchBar onSearchTermChange={this.props.onSearchTermChange} />
+        {/* <SearchBar onSearchTermChange={this.props.onSearchTermChange} /> */}
         <SearchResults
           handleModal={this.props.handleModal}
           shows={this.props.shows}

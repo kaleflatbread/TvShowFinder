@@ -6,6 +6,12 @@ import isEqual from '../searchAlg';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import CardModal from './CardModal.js';
+import LoginContainer from './LoginContainer'
+import ProfileContainer from './ProfileContainer'
+import SearchBar from '../components/SearchBar'
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,28 +63,46 @@ class App extends Component {
     })
   };
 
+  navBarReset = () => {
+    console.log('navbar reset')
+    this.setState({
+      shows: showsData,
+      results: [],
+      selectedCard: null,
+      modalCard: null,
+      showPage: true,
+      similarShows: [],
+      displayModal: false,
+    })
+  }
+
   render() {
-    // console.log('state modalCard',this.state.modalCard);
+    console.log('state modalCard',this.state.modalCard);
     return (
       <div>
+        <Route path="/" render={()=><NavBar onNavBarReset={this.navBarReset}/>} />
         <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} modalCard={this.state.modalCard} />
-        <NavBar />
+        <Route path="/home" render={(props)=><SearchBar onSearchTermChange={this.handleShowSearch} />} />
         {this.state.showPage ? (
-          <SearchContainer
+          <Route path="/home" render={(props)=>
+            <SearchContainer
             handleModal={this.handleModal}
             onSearchTermChange={this.handleShowSearch}
             shows={this.state.results}
             onCardClick={this.handleCardClick}
           />
+          } />
         ) : (
-          <SelectedContainer
+          <Route path="/home" render={(props)=>
+            <SelectedContainer
             handleModal={this.handleModal}
             similarShows={this.state.similarShows}
             selectedCard={this.state.selectedCard}
           />
+          } />
         )}
-
-        <Footer />
+        <Route exact path="/login" component={LoginContainer} />
+        <Route path="/" component={Footer} />
       </div>
     );
   }
