@@ -5,7 +5,7 @@ import { Row, Col } from "antd";
 //this.props.selectedCard=entire show instance
 export default class SelectedContainer extends Component {
   state = {
-    clickedCard: this.props.selectedCard
+    clickedCard: this.props.selectedCard,
   };
   selectShows = () => {
     const matchCount =  this.props.similarShows.length;
@@ -46,6 +46,7 @@ export default class SelectedContainer extends Component {
               onClick={this.handleClick}
               similarShows={this.selectShows()}
               handleModal={this.props.handleModal}
+              clickedCard={this.state.clickedCard}
             />
           </Col>
         </Row>

@@ -13,7 +13,9 @@ const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
           style={{ width: 250 }}
           cover={
             <img
-              onClick={() => onClick(similarShow)}
+              onClick={() => {
+                onClick(similarShow)
+              }}
               id={similarShow.id}
               alt=""
               src={similarShow.image.original}
