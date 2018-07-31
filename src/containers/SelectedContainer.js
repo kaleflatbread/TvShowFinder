@@ -8,7 +8,7 @@ export default class SelectedContainer extends Component {
     clickedCard: this.props.selectedCard
   };
   selectShows = () => {
-    const matchCount =  5 // this.props.similarShows.length;
+    const matchCount =  this.props.similarShows.length;
     const suggestedShows = [];
 
     while (suggestedShows.length < matchCount) {

@@ -8,11 +8,12 @@ const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
   const show = similarShow => {
     // debugger
     return (
-      <div key={similarShow.id} onClick={() => onClick(similarShow)}>
+      <div key={similarShow.id}>
         <Card
           style={{ width: 250 }}
           cover={
             <img
+              onClick={() => onClick(similarShow)}
               id={similarShow.id}
               alt=""
               src={similarShow.image.original}
