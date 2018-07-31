@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import ShowCard from '../components/ShowCard';
-import SuggestedShows from '../components/SuggestedShows';
-import { Row, Col } from 'antd';
+import React, { Component } from "react";
+import ShowCard from "../components/ShowCard";
+import SuggestedShows from "../components/SuggestedShows";
+import { Row, Col } from "antd";
 //this.props.selectedCard=entire show instance
 export default class SelectedContainer extends Component {
   state = {
-    clickedCard: this.props.selectedCard,
+    clickedCard: this.props.selectedCard
   };
   selectShows = () => {
     const matchCount = this.props.similarShows.length;
@@ -16,7 +16,7 @@ export default class SelectedContainer extends Component {
         Math.floor(Math.random() * this.props.similarShows.length)
       ];
       const validateShow = suggestedShows.find(
-        (shows) => shows.id === newShow.id
+        shows => shows.id === newShow.id
       );
       if (!validateShow) {
         suggestedShows.push(newShow);
@@ -25,9 +25,9 @@ export default class SelectedContainer extends Component {
     return suggestedShows;
   };
 
-  handleClick = (show) => {
+  handleClick = show => {
     this.setState({
-      clickedCard: show,
+      clickedCard: show
     });
   };
 
@@ -36,12 +36,16 @@ export default class SelectedContainer extends Component {
       <div>
         <Row>
           <Col span={8}>
-            <ShowCard show={this.state.clickedCard} />
+            <ShowCard
+              show={this.state.clickedCard}
+              handleModal={this.props.handleModal}
+            />
           </Col>
           <Col span={16}>
             <SuggestedShows
               onClick={this.handleClick}
               similarShows={this.selectShows()}
+              handleModal={this.props.handleModal}
             />
           </Col>
         </Row>

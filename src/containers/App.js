@@ -14,6 +14,7 @@ class App extends Component {
       shows: showsData,
       results: [],
       selectedCard: null,
+      modalCard: null,
       showPage: true,
       similarShows: [],
       displayModal: false,
@@ -46,17 +47,21 @@ class App extends Component {
   };
 
   handleModal = () => {
-    console.log('modal');
+    // console.log(event.target.id);
+    const showMatch = this.state.shows.find(show => {
+      return show.id === parseInt(event.target.id)
+    })
     this.setState({
-      displayModal: !this.state.displayModal
+      displayModal: !this.state.displayModal,
+      modalCard: showMatch
     })
   };
 
   render() {
-    console.log(this.state.displayModal);
+    // console.log('state modalCard',this.state.modalCard);
     return (
       <div>
-        <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} />
+        <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} modalCard={this.state.modalCard} />
         <NavBar />
         {this.state.showPage ? (
           <SearchContainer

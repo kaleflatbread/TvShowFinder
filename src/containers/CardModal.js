@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
 
 export default class CardModal extends Component {
-  state = { visible: this.props.displayModal };
+  state = { 
+    visible: false,
+    show: null
+  };
 
   handleOk = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -21,13 +24,15 @@ export default class CardModal extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.displayModal) {
       props.handleModal()
-      return { visible: true }
+      // console.log('modal props',props);
+      return { visible: true, show: props.modalCard }
     } else {
       return null
     }
   }
 
   render() {
+    console.log('modal props',this.props.modalCard)
     return (
       <div>
         <Modal

@@ -1,27 +1,33 @@
-import React from 'react';
-import { Card, Icon, Avatar } from 'antd';
-import reformatSummary from '../reformatSummary';
+import React from "react";
+import { Card, Icon, Avatar } from "antd";
+import reformatSummary from "../reformatSummary";
 
 const { Meta } = Card;
 
-const SuggestedShows = ({ similarShows, onClick }) => {
-  const show = (similarShow) => {
+const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
+  const show = similarShow => {
+    // debugger
     return (
-      <div key={similarShow.id}>
+      <div key={similarShow.id} onClick={() => onClick(similarShow)}>
         <Card
-          onClick={() => onClick(similarShow)}
           style={{ width: 250 }}
           cover={
             <img
               id={similarShow.id}
-              alt="example"
+              alt=""
               src={similarShow.image.original}
             />
           }
           actions={[
             <Icon type="setting" />,
             <Icon type="edit" />,
-            <Icon onClick={() => console.log('hey')} type="ellipsis" />,
+            <Icon
+              id={similarShow.id}
+              onClick={() => {
+                return handleModal();
+              }}
+              type="ellipsis"
+            />
           ]}
         >
           <Meta
@@ -32,7 +38,7 @@ const SuggestedShows = ({ similarShows, onClick }) => {
       </div>
     );
   };
-  return similarShows.map((similarShow) => show(similarShow));
+  return similarShows.map(similarShow => show(similarShow));
 };
 
 export default SuggestedShows;

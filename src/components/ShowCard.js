@@ -20,6 +20,7 @@ const ShowCard = (props) => {
           <Icon type="setting" />,
           <Icon type="edit" />,
           <Icon
+            id={props.show.id}
             onClick={() => {
               return props.handleModal();
             }}
