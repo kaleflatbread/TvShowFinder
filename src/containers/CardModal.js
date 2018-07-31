@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
 
 export default class CardModal extends Component {
-  state = { 
+  state = {
     visible: false,
     show: null
   };
@@ -31,21 +31,29 @@ export default class CardModal extends Component {
     }
   }
 
+  modalData = () => {
+    if (this.props.modalCard) {
+      return (
+        <div>
+          <Modal
+            title={this.props.modalCard.name}
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <h1>Insert modal data here...</h1>
+            </Modal>
+        </div>
+          )
+        }
+      }
+    
   render() {
-    console.log('modal props',this.props.modalCard)
+            console.log('modal props', this.props.modalCard)
     return (
       <div>
-        <Modal
-          title="Basic Modal"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
-      </div>
-    );
+        {this.modalData()}
+        </div>
+      );
+    }
   }
-}
