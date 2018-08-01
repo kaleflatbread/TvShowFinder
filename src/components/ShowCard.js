@@ -7,7 +7,7 @@ const ShowCard = (props) => {
   return (
     <div>
       <Card
-        style={{ width: 250 }}
+        // style={{ width: 250 }}
         cover={
           <img
             onClick={() => props.onCardClick(props.show)}
@@ -17,15 +17,15 @@ const ShowCard = (props) => {
           />
         }
         actions={[
-          <Icon type="setting" />,
-          <Icon type="edit" />,
-          <Icon
-            id={props.show.id}
-            onClick={() => {
-              return props.handleModal();
-            }}
-            type="ellipsis"
-          />,
+          // <Icon type="setting" />,
+          // <Icon type="edit" />,
+          // <Icon
+          //   id={props.show.id}
+          //   onClick={() => {
+          //     return props.handleModal();
+          //   }}
+          //   type="ellipsis"
+          // />,
         ]}
       >
         <Meta
@@ -33,6 +33,7 @@ const ShowCard = (props) => {
           description={reformatSummary(props.show.summary)}
         />
       </Card>
+      <br />
     </div>
   );
 };

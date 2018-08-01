@@ -12,7 +12,7 @@ export default class NavBar extends Component {
   render() {
     console.log('navbar props',this.props);
     return (
-      <Layout className="layout">
+      <Layout className="layout" style={{position:'fixed', top: 0, width: '100%', zIndex:1}}>
         <Header>
           <div className="logo" />
           <Menu

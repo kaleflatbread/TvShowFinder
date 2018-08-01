@@ -50,6 +50,7 @@ class App extends Component {
       selectedCard: selectedShow,
       similarShows: similarShows,
     });
+    window.scrollTo(0, 0);
   };
 
   handleModal = () => {
@@ -82,7 +83,6 @@ class App extends Component {
       <div>
         <Route path="/" render={()=><NavBar onNavBarReset={this.navBarReset}/>} />
         <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} modalCard={this.state.modalCard} />
-        <Route path="/home" render={(props)=><SearchBar onSearchTermChange={this.handleShowSearch} />} />
         {this.state.showPage ? (
           <Route path="/home" render={(props)=>
             <SearchContainer

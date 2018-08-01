@@ -9,8 +9,9 @@ const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
     // debugger
     return (
       <div key={similarShow.id}>
+      <br />
         <Card
-          style={{ width: 250 }}
+          // style={{ width: 250 }}
           cover={
             <img
               onClick={() => {
@@ -41,7 +42,11 @@ const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
       </div>
     );
   };
-  return similarShows.map(similarShow => show(similarShow));
+  return (
+    <div style={{paddingTop:250}}>
+      {similarShows.map(similarShow => show(similarShow))}
+    </div>
+  )
 };
 
 export default SuggestedShows;
