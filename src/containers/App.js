@@ -110,10 +110,12 @@ class App extends Component {
             handleModal={this.handleModal}
             similarShows={this.state.similarShows}
             selectedCard={this.state.selectedCard}
+            user={this.state.user}
           />
           } />
         )}
         <Route exact path="/login" render={(props)=> <LoginContainer token={this.handleToken} user={this.handleUser} /> } />
+        <Route exact path="/profile" render={(props)=> <ProfileContainer user={this.state.user} shows={this.state.shows} /> } />
         <Route path="/" component={Footer} />
       </div>
     );

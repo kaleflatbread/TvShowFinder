@@ -46,16 +46,17 @@ export default class SelectedContainer extends Component {
           </Col>
           </Row>
           <Row>
-          <Col span={8}> </Col>
-          <Col span={8}>
+          <Col span={9}> </Col>
+          <Col span={6}>
             <SuggestedShows
               onClick={this.handleClick}
               similarShows={this.selectShows()}
               handleModal={this.props.handleModal}
               clickedCard={this.state.clickedCard}
+              user={this.props.user}
             />
           </Col>
-          <Col span={8}> </Col>
+          <Col span={9}> </Col>
         </Row>
       </div>
     );

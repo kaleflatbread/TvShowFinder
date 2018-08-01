@@ -35,7 +35,7 @@ export default class NavBar extends Component {
             >
               <Link to="/home"> Home </Link>
             </Menu.Item>
-            <Menu.Item key="2">Profile</Menu.Item>
+            <Menu.Item key="2"><Link to="/profile"> Favorites </Link></Menu.Item>
             {this.props.user === null ? (
               <Menu.Item key="3" style={{ marginLeft: "70%" }}>
                 <Link to="/login">Login </Link>

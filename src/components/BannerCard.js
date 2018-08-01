@@ -19,7 +19,7 @@ export default class BannerCard extends Component {
       <Card
         style={{
           position: "fixed",
-          top: 80,
+          top: 64,
           width: "100%",
           textAlign: "center",
           zIndex: 1,
