@@ -26,17 +26,14 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div className="wow bounceInDown search-bar" >
-        <br />
-        <br />
-        <br />
-        <br />
+      <div className="wow bounceInDown search-bar" style={{ paddingTop: 100 }} >
         <Row >
           <Col span={8}> </Col>
           <Col span={8}>
             <Search
               value={this.state.term}
               onChange={event => this.onInputChange(event.target.value)}
+              placeholder="Type one of your favourite shows"
             />
           </Col>
           <Col span={8}> </Col>
