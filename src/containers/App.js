@@ -24,6 +24,8 @@ class App extends Component {
       showPage: true,
       similarShows: [],
       displayModal: false,
+      token: '',
+      user: null
     };
   }
 
@@ -44,16 +46,15 @@ class App extends Component {
 
   handleCardClick = (selectedShow) => {
     let similarShows = showsData.filter((show) => isEqual(selectedShow, show));
-    console.log(selectedShow);
     this.setState({
       showPage: !this.state.showPage,
       selectedCard: selectedShow,
       similarShows: similarShows,
     });
+    window.scrollTo(0, 0);
   };
 
   handleModal = () => {
-    // console.log(event.target.id);
     const showMatch = this.state.shows.find(show => {
       return show.id === parseInt(event.target.id)
     })
@@ -63,8 +64,19 @@ class App extends Component {
     })
   };
 
+  handleToken = (jwt) => {
+    this.setState({
+      token: jwt
+    })
+  }
+
+  handleUser = (data) => {
+    this.setState({
+      user: data
+    })
+  }
+
   navBarReset = () => {
-    console.log('navbar reset')
     this.setState({
       shows: showsData,
       results: [],
@@ -77,12 +89,12 @@ class App extends Component {
   }
 
   render() {
-    console.log('state modalCard',this.state.modalCard);
+    console.log('token',this.state.token);
+    console.log('user',this.state.user);
     return (
       <div>
-        <Route path="/" render={()=><NavBar onNavBarReset={this.navBarReset}/>} />
+        <Route path="/" render={()=><NavBar onNavBarReset={this.navBarReset} user={this.state.user} />} />
         <CardModal displayModal={this.state.displayModal} handleModal={this.handleModal} modalCard={this.state.modalCard} />
-        <Route path="/home" render={(props)=><SearchBar onSearchTermChange={this.handleShowSearch} />} />
         {this.state.showPage ? (
           <Route path="/home" render={(props)=>
             <SearchContainer
@@ -98,10 +110,12 @@ class App extends Component {
             handleModal={this.handleModal}
             similarShows={this.state.similarShows}
             selectedCard={this.state.selectedCard}
+            user={this.state.user}
           />
           } />
         )}
-        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/login" render={(props)=> <LoginContainer token={this.handleToken} user={this.handleUser} /> } />
+        <Route exact path="/profile" render={(props)=> <ProfileContainer user={this.state.user} shows={this.state.shows} /> } />
         <Route path="/" component={Footer} />
       </div>
     );

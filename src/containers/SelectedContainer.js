@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import ShowCard from "../components/ShowCard";
 import SuggestedShows from "../components/SuggestedShows";
+import BannerCard from "../components/BannerCard";
 import { Row, Col } from "antd";
 //this.props.selectedCard=entire show instance
 export default class SelectedContainer extends Component {
   state = {
-    clickedCard: this.props.selectedCard,
+    clickedCard: this.props.selectedCard
   };
   selectShows = () => {
-    const matchCount =  this.props.similarShows.length;
+    const matchCount = this.props.similarShows.length;
     const suggestedShows = [];
 
     while (suggestedShows.length < matchCount) {
@@ -29,26 +30,33 @@ export default class SelectedContainer extends Component {
     this.setState({
       clickedCard: show
     });
+    window.scrollTo(0, 0);
   };
 
   render() {
     return (
       <div>
         <Row>
-          <Col span={8}>
-            <ShowCard
+          <Col span={24}>
+            <BannerCard show={this.state.clickedCard}/>
+            {/* <ShowCard
               show={this.state.clickedCard}
               handleModal={this.props.handleModal}
-            />
+            /> */}
           </Col>
-          <Col span={16}>
+          </Row>
+          <Row>
+          <Col span={9}> </Col>
+          <Col span={6}>
             <SuggestedShows
               onClick={this.handleClick}
               similarShows={this.selectShows()}
               handleModal={this.props.handleModal}
               clickedCard={this.state.clickedCard}
+              user={this.props.user}
             />
           </Col>
+          <Col span={9}> </Col>
         </Row>
       </div>
     );

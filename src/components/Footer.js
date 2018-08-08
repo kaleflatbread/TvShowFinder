@@ -15,7 +15,7 @@ export default class NavBar extends Component {
             width: '100%',
           }}
         >
-          Created by Jordan, Kayla, Ledio ©2018
+          Created by Jordan, Kayla, Ledio © 2018
         </Footer>
       </Layout>
     );

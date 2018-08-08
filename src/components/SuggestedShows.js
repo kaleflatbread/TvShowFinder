@@ -1,20 +1,36 @@
 import React from "react";
 import { Card, Icon, Avatar } from "antd";
 import reformatSummary from "../reformatSummary";
+import { Alert } from 'antd';
 
 const { Meta } = Card;
 
-const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
+const SuggestedShows = ({ similarShows, onClick, user }) => {
+
+  const postFavorite = (showID) => {
+    // postConfig is used for generating a new favorite show
+    console.log(user.id)
+    const postConfig = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        show: { user_id: user.id, favorite: showID }
+      })
+    };
+    fetch("http://localhost:3000/shows/create",postConfig)
+    .then(alert("Show added to favorites"))
+  }
+
   const show = similarShow => {
-    // debugger
     return (
       <div key={similarShow.id}>
+        <br />
         <Card
-          style={{ width: 250 }}
+          // style={{ width: 250 }}
           cover={
             <img
               onClick={() => {
-                onClick(similarShow)
+                onClick(similarShow);
               }}
               id={similarShow.id}
               alt=""
@@ -22,26 +38,27 @@ const SuggestedShows = ({ similarShows, onClick, handleModal }) => {
             />
           }
           actions={[
-            <Icon type="setting" />,
-            <Icon type="edit" />,
             <Icon
-              id={similarShow.id}
+              type="heart"
               onClick={() => {
-                return handleModal();
+                postFavorite(similarShow.id) ;
               }}
-              type="ellipsis"
             />
           ]}
         >
           <Meta
-            title={similarShow.name}
+            title={`${similarShow.name} (${similarShow.rating.average})`}
             description={reformatSummary(similarShow.summary)}
           />
         </Card>
       </div>
     );
   };
-  return similarShows.map(similarShow => show(similarShow));
+  return (
+    <div style={{ paddingTop: 100 }}>
+      {similarShows.map(similarShow => show(similarShow))}
+    </div>
+  );
 };
 
 export default SuggestedShows;

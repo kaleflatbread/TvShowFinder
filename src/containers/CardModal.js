@@ -49,7 +49,6 @@ export default class CardModal extends Component {
       }
     
   render() {
-            console.log('modal props', this.props.modalCard)
     return (
       <div>
         {this.modalData()}
